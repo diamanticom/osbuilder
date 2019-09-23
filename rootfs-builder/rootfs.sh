@@ -13,7 +13,7 @@ set -o errtrace
 script_name="${0##*/}"
 script_dir="$(dirname $(readlink -f $0))"
 AGENT_VERSION=${AGENT_VERSION:-}
-GO_AGENT_PKG=${GO_AGENT_PKG:-github.com/kata-containers/agent}
+GO_AGENT_PKG=${GO_AGENT_PKG:-github.com/diamanticom/agent}
 AGENT_BIN=${AGENT_BIN:-kata-agent}
 AGENT_INIT=${AGENT_INIT:-no}
 KERNEL_MODULES_DIR=${KERNEL_MODULES_DIR:-""}
@@ -497,6 +497,8 @@ EOT
 		make install DESTDIR="${ROOTFS_DIR}" INIT=${AGENT_INIT} SECCOMP=${SECCOMP}
 		popd
 	else
+		echo $AGENT_SOURCE_BIN 
+		echo $AGENT_DEST
 		cp ${AGENT_SOURCE_BIN} ${AGENT_DEST}
 		OK "cp ${AGENT_SOURCE_BIN} ${AGENT_DEST}"
 	fi
